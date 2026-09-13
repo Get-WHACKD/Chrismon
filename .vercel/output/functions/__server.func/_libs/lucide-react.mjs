@@ -1,5 +1,5 @@
 import { i as __toESM } from "../_runtime.mjs";
-import { _ as require_react } from "./@react-three/drei+[...].mjs";
+import { h as require_react } from "./@react-three/drei+[...].mjs";
 //#region node_modules/lucide-react/dist/esm/shared/src/utils.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 /**
