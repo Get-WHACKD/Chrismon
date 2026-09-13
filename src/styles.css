@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #07080c;
-  --color-surface: #10141c;
-  --color-surface-2: #171d28;
-  --color-fg: #e6e1d6;
-  --color-muted: #8b939e;
-  --color-subtle: #5c6570;
-  --color-accent: #7eb8c9;
+  --color-bg: #06080b;
+  --color-surface: #10151b;
+  --color-surface-2: #19232a;
+  --color-fg: #f0eadf;
+  --color-muted: #a1a9ad;
+  --color-subtle: #69757b;
+  --color-accent: #a8d7d4;
   --color-accent-fg: #07080c;
   --color-border: color-mix(in oklab, #e6e1d6 14%, transparent);
   --color-border-strong: color-mix(in oklab, #e6e1d6 26%, transparent);
@@ -61,7 +61,9 @@
   position: relative;
   height: 100dvh;
   overflow: hidden;
-  background: var(--color-bg);
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in oklab, var(--color-accent) 7%, transparent), transparent 36rem),
+    var(--color-bg);
   color: var(--color-fg);
 }
 
@@ -237,7 +239,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
-  padding: calc(0.9rem + env(safe-area-inset-top)) 1rem 0;
+  padding: calc(1.1rem + env(safe-area-inset-top)) clamp(1rem, 3vw, 2.5rem) 0;
   transform: translateY(-8px);
 }
 
@@ -271,6 +273,19 @@
   color: var(--color-muted);
   font-size: 0.72rem;
   letter-spacing: 0.04em;
+}
+
+.topbar-note {
+  position: absolute;
+  top: calc(5rem + env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  color: color-mix(in oklab, var(--color-muted) 82%, transparent);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .mode-switch {
@@ -338,42 +353,15 @@
   background: color-mix(in oklab, var(--color-surface-2) 90%, var(--color-accent) 10%);
 }
 
-.layer-index {
-  font-variant-numeric: tabular-nums;
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  color: var(--color-subtle);
-}
-
-.layer-glyph {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--color-accent);
-  min-width: 1.2rem;
-}
-
-.layer-title {
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
-.analysis {
-  right: 0.9rem;
-  top: 5.4rem;
-  width: min(22.5rem, calc(100vw - 1.8rem));
-  transform: translateX(8px);
-}
-
-.analysis.is-in {
-  transform: none;
-}
-
 .analysis-card {
   padding: 1.15rem 1.2rem 1.2rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid color-mix(in oklab, var(--color-accent) 18%, transparent);
   border-radius: var(--radius-xl);
   background: color-mix(in oklab, var(--color-surface) 88%, transparent);
-  box-shadow: 0 18px 40px color-mix(in oklab, var(--color-bg) 55%, transparent);
+  box-shadow:
+    0 18px 40px color-mix(in oklab, var(--color-bg) 55%, transparent),
+    inset 0 1px 0 color-mix(in oklab, white 7%, transparent);
+  backdrop-filter: blur(18px);
 }
 
 .analysis-head {
@@ -451,8 +439,8 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.85rem 1.1rem;
-  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
-  background: linear-gradient(to top, var(--color-bg), transparent);
+  padding: 0.75rem clamp(1rem, 3vw, 2.5rem) calc(0.75rem + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, color-mix(in oklab, var(--color-bg) 96%, transparent), transparent);
   transform: translateY(8px);
 }
 
@@ -508,6 +496,10 @@
 }
 
 @media (max-width: 860px) {
+  .topbar-note {
+    display: none;
+  }
+
   .mode-switch {
     display: none;
   }

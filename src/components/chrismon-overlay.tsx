@@ -83,14 +83,15 @@ export function ChrismonOverlay() {
     <>
       <IntroGate />
 
-      <header className={cn("topbar", entered && "is-in")} aria-hidden={!entered} {...(!entered ? { inert: "" } : {})}>
+      <header className={cn("topbar", entered && "is-in")} aria-hidden={!entered} {...(!entered ? { inert: true } : {})}>
         <div className="brand">
-          <span className="brand-mark">☧</span>
+          <span className="brand-mark" aria-hidden="true">☧</span>
           <div>
             <p className="brand-name">Chrismon</p>
             <p className="brand-sub">Chi-Rho stone · 3D reading</p>
           </div>
         </div>
+        <p className="topbar-note">Rotate the stone to read the relief</p>
         <div className="mode-switch" role="tablist" aria-label="View mode">
           {MODES.map((mode) => (
             <button
@@ -107,7 +108,7 @@ export function ChrismonOverlay() {
         </div>
       </header>
 
-      <nav className={cn("layer-rail", entered && "is-in")} aria-label="Glyph layers" aria-hidden={!entered} {...(!entered ? { inert: "" } : {})}>
+      <nav className={cn("layer-rail", entered && "is-in")} aria-label="Glyph layers" aria-hidden={!entered} {...(!entered ? { inert: true } : {})}>
         {LAYERS.map((item) => (
           <button
             key={item.id}
@@ -126,7 +127,7 @@ export function ChrismonOverlay() {
         className={cn("analysis", entered && "is-in", layer && "is-open")}
         aria-live="polite"
         aria-hidden={!entered}
-        {...(!entered ? { inert: "" } : {})}
+        {...(!entered ? { inert: true } : {})}
       >
         {layer ? (
           <article className="analysis-card">
@@ -179,7 +180,8 @@ export function ChrismonOverlay() {
               ))}
             </ul>
             <p className="analysis-body">
-              Tap a layer, or start a guided reading from Alpha.
+              Tap a layer, or start a guided reading from Alpha. You can return
+              here at any time.
             </p>
             <button
               type="button"
@@ -192,10 +194,10 @@ export function ChrismonOverlay() {
         )}
       </aside>
 
-      <footer className={cn("bottom-bar", entered && "is-in")} aria-hidden={!entered} {...(!entered ? { inert: "" } : {})}>
+      <footer className={cn("bottom-bar", entered && "is-in")} aria-hidden={!entered} {...(!entered ? { inert: true } : {})}>
         <label className="slider-block">
           <SunMedium size={16} strokeWidth={1.75} />
-          <span>Azimuth</span>
+          <span>Light direction</span>
           <input
             type="range"
             min={-160}
@@ -207,7 +209,7 @@ export function ChrismonOverlay() {
         </label>
         <label className="slider-block">
           <Aperture size={16} strokeWidth={1.75} />
-          <span>Elevation</span>
+          <span>Light height</span>
           <input
             type="range"
             min={12}
